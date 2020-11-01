@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        tools:context=".DetailActivity">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/profile_image"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="John Doe" />
+
+        <TextView
+            android:id="@+id/screen_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/profile_image"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="iceguyvn" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_image"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            tools:text="It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of light, it was the season of darkness, it was the spring of hope, it was the winter of despair." />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="6:50 AM 10/28/20" />
+
+        <TextView
+            android:id="@+id/retweets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="18" />
+
+        <TextView
+            android:id="@+id/rt_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/retweets"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/retweets" />
+
+        <TextView
+            android:id="@+id/likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/rt_count"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            tools:text="473" />
+
+        <TextView
+            android:id="@+id/l_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/likes"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/likes" />
+    </RelativeLayout>
+</layout>
