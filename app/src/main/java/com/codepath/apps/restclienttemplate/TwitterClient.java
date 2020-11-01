@@ -33,13 +33,8 @@ public class TwitterClient extends OAuthBaseClient {
 	public static final String REST_CALLBACK_URL_TEMPLATE = "intent://%s#Intent;action=android.intent.action.VIEW;scheme=%s;package=%s;S.browser_fallback_url=%s;end";
 
 	public TwitterClient(Context context) {
-		super(context, REST_API_INSTANCE,
-				REST_URL,
-				REST_CONSUMER_KEY,
-				REST_CONSUMER_SECRET,
-				null,  // OAuth2 scope, null for OAuth1
-				String.format(REST_CALLBACK_URL_TEMPLATE, context.getString(R.string.intent_host),
-						context.getString(R.string.intent_scheme), context.getPackageName(), FALLBACK_URL));
+		super(context, REST_API_INSTANCE, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET,null,  // OAuth2 scope, null for OAuth1
+				String.format(REST_CALLBACK_URL_TEMPLATE, context.getString(R.string.intent_host), context.getString(R.string.intent_scheme), context.getPackageName(), FALLBACK_URL));
 	}
 
 	public void getHomeTimeline(JsonHttpResponseHandler handler) {
@@ -76,5 +71,4 @@ public class TwitterClient extends OAuthBaseClient {
         params.put("status", tweet);
         client.post(apiUrl, params, "", handler);
     }
-
 }

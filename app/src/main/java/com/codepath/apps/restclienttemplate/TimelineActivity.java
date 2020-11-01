@@ -1,7 +1,6 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,7 +26,6 @@ public class TimelineActivity extends AppCompatActivity {
     public static final int REQUEST_CODE_COMPOSE = 1967;
 
     TwitterClient client;
-    TweetDao tweetDao;
     ActivityTimelineBinding binding;
     List<Tweet> tweets;
     TweetsAdapter adapter;
@@ -40,7 +38,6 @@ public class TimelineActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_timeline);
 
         client = TwitterApp.getRestClient(this);
-        tweetDao = ((TwitterApp) getApplicationContext()).getMyDatabase().tweetDao();
 
         tweets = new ArrayList<>();
         adapter = new TweetsAdapter(this, tweets);
@@ -70,18 +67,6 @@ public class TimelineActivity extends AppCompatActivity {
             }
         };
         binding.tweets.addOnScrollListener(scrollListener);
-
-        // query local database in the background
-        AsyncTask.execute(new Runnable() {
-            @Override
-            public void run() {
-                Log.d(TAG, "Showing data from database");
-                List<TweetWithUser> tweetWithUsers = tweetDao.recentItems();
-                List<Tweet> tweetsFromDB = TweetWithUser.toTweets(tweetWithUsers);
-                adapter.clear();
-                adapter.addAll(tweetsFromDB);
-            }
-        });
 
         populateHomeTimeline();
     }
@@ -147,16 +132,6 @@ public class TimelineActivity extends AppCompatActivity {
                 adapter.clear();
                 adapter.addAll(tweetsFromNetwork);
                 binding.swipeRefresh.setRefreshing(false);
-
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d(TAG, "Saving data into database");
-                        List<User> users = User.fromTweets(tweetsFromNetwork);
-                        tweetDao.insertModel(users.toArray(new User[0]));
-                        tweetDao.insertModel(tweetsFromNetwork.toArray(new Tweet[0]));
-                    }
-                });
             }
 
             @Override

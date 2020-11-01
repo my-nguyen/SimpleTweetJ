@@ -1,11 +1,5 @@
 package com.codepath.apps.restclienttemplate;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.ForeignKey;
-import androidx.room.Ignore;
-import androidx.room.PrimaryKey;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,29 +8,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(foreignKeys = @ForeignKey(entity=User.class, parentColumns="id", childColumns="userId"))
 public class Tweet implements Serializable {
-    @ColumnInfo
-    @PrimaryKey
     public long id;
-    @ColumnInfo
     public String createdAt;
-    @ColumnInfo
     public String text;
-    @ColumnInfo
     public int retweetCount;
-    @ColumnInfo
     public int favoriteCount;
-    @Ignore
     public User user;
-    @ColumnInfo
     public long userId;
     // public Entities entities;
     // public ExtendedEntities extendedEntities;
-
-    /*Tweet() {
-        int tmp = 0;
-    }*/
 
     Tweet(JSONObject jsonObject) {
         try {
@@ -167,16 +148,10 @@ class Variant implements Serializable {
     }
 }
 
-@Entity
 class User implements Serializable {
-    @ColumnInfo
-    @PrimaryKey
     public long id;
-    @ColumnInfo
     public String name;
-    @ColumnInfo
     public String screenName;
-    @ColumnInfo
     public String profileImageUrl;
 
     User() {}
